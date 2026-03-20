@@ -1,17 +1,52 @@
 ---
 // src/components/Footer.astro
+import Logo from "../assets/logo2.png";
 ---
 
 <footer>
-  <div class="footer-top">
+
+  <!-- Barra superior del footer — espejo de la top-bar del header -->
+  <div class="footer-top-bar">
+    <span>🌿 Comprometidos con el ambiente y el futuro del planeta</span>
+    <div class="divider"></div>
+    <a href="mailto:contacto@tuempresa.com">contacto@tuempresa.com</a>
+  </div>
+
+  <!-- Cuerpo principal -->
+  <div class="footer-main">
+
+    <!-- Brand -->
     <div class="footer-brand">
-      <div class="footer-logo">
-        <span class="logo-mark">◆</span>
-        <span class="logo-name">Empresa</span>
+      <a href="#inicio" class="footer-logo">
+        <img src={Logo.src} alt="Logo" class="footer-img-logo" />
+        <div class="footer-logo-text">
+          <span class="footer-logo-mark">◆</span>
+          <span class="footer-logo-name">Consultora especializada en<br/>ambiente y cambio climático.</span>
+        </div>
+      </a>
+      <p class="footer-tagline">
+        Acompañamos a organizaciones en su transición hacia un desarrollo más sostenible, con rigor técnico y compromiso ambiental.
+      </p>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Twitter / X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l16 16M4 20L20 4"/>
+          </svg>
+        </a>
       </div>
-      <p class="footer-tagline">Construimos el futuro de tu negocio con estrategia, tecnología y propósito.</p>
     </div>
 
+    <!-- Links -->
     <div class="footer-links">
       <div class="footer-col">
         <h4>Navegación</h4>
@@ -22,10 +57,10 @@
       </div>
       <div class="footer-col">
         <h4>Servicios</h4>
-        <a href="#servicios">Consultoría</a>
-        <a href="#servicios">Transformación Digital</a>
-        <a href="#servicios">Marca</a>
-        <a href="#servicios">Análisis de Datos</a>
+        <a href="#servicios">Consultoría Ambiental</a>
+        <a href="#servicios">Cambio Climático</a>
+        <a href="#servicios">Gestión de Residuos</a>
+        <a href="#servicios">Auditoría Ambiental</a>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
@@ -34,109 +69,235 @@
         <span>Buenos Aires, Argentina</span>
       </div>
     </div>
+
   </div>
 
+  <!-- Línea degradada verde — espejo de la del header -->
+  <div class="footer-divider-line"></div>
+
+  <!-- Bottom bar -->
   <div class="footer-bottom">
-    <p>© 2026 Empresa. Todos los derechos reservados.</p>
+    <p>© 2026 Consultora Ambiente & Clima. Todos los derechos reservados.</p>
     <div class="footer-legal">
       <a href="#">Privacidad</a>
       <a href="#">Términos</a>
     </div>
   </div>
+
 </footer>
 
 <style>
+  /* ── VARIABLES (por si el footer se usa aislado) ── */
+  :root {
+    --green-deep:  #1a3a2a;
+    --green-mid:   #2d6a4f;
+    --green-light: #52b788;
+    --green-pale:  #d8f3dc;
+  }
+
+  /* ── FOOTER WRAPPER ── */
   footer {
-    background: var(--ink);
-    color: rgba(255,255,255,0.6);
+    background: var(--green-deep);
+    color: rgba(255,255,255,0.55);
     font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
   }
 
-  .footer-top {
+  /* ── TOP BAR — espejo exacto del header ── */
+  .footer-top-bar {
+    width: 100%;
+    height: 36px;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-top-bar span {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(216, 243, 220, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .footer-top-bar .divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .footer-top-bar a {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--green-light);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .footer-top-bar a:hover { color: white; }
+
+  /* ── FOOTER MAIN ── */
+  .footer-main {
     display: grid;
-    grid-template-columns: 1.2fr 2fr;
+    grid-template-columns: 1.3fr 2fr;
     gap: 80px;
-    padding: 80px 80px 60px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 64px 48px 52px;
   }
 
+  /* ── BRAND ── */
   .footer-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
     margin-bottom: 20px;
   }
+  .footer-img-logo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+  .footer-logo:hover .footer-img-logo { opacity: 1; }
 
-  .logo-mark { color: var(--accent); font-size: 0.9rem; }
-
-  .logo-name {
+  .footer-logo-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .footer-logo-mark {
+    color: var(--green-light);
+    font-size: 0.6rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .footer-logo-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: white;
-    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
   }
 
   .footer-tagline {
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.38);
+    line-height: 1.75;
     max-width: 280px;
+    margin-bottom: 28px;
   }
 
+  /* Íconos sociales */
+  .footer-social {
+    display: flex;
+    gap: 10px;
+  }
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .footer-social a:hover {
+    border-color: var(--green-light);
+    color: var(--green-light);
+    background: rgba(82,183,136,0.08);
+  }
+
+  /* ── LINKS ── */
   .footer-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 32px;
+    padding-top: 4px;
   }
-
   .footer-col h4 {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: white;
-    margin-bottom: 20px;
+    color: var(--green-light);
+    margin-bottom: 18px;
     font-weight: 500;
   }
-
   .footer-col a,
   .footer-col span {
     display: block;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.38);
     text-decoration: none;
     margin-bottom: 10px;
-    font-size: 0.84rem;
-    transition: color 0.2s;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    transition: color 0.2s, padding-left 0.2s;
   }
-  .footer-col a:hover { color: var(--accent); }
+  .footer-col a:hover {
+    color: rgba(255,255,255,0.85);
+    padding-left: 4px;
+  }
 
+  /* ── LÍNEA DEGRADADA — espejo del header ── */
+  .footer-divider-line {
+    height: 2px;
+    background: linear-gradient(90deg, var(--green-mid) 0%, var(--green-light) 50%, transparent 100%);
+    opacity: 0.5;
+    margin: 0 48px;
+  }
+
+  /* ── BOTTOM BAR ── */
   .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 80px;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.3);
+    padding: 20px 48px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.03em;
   }
-
   .footer-legal {
     display: flex;
     gap: 24px;
   }
   .footer-legal a {
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.25);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .footer-legal a:hover { color: white; }
+  .footer-legal a:hover { color: rgba(255,255,255,0.7); }
 
+  /* ── TABLET ── */
   @media (max-width: 1024px) {
-    .footer-top { grid-template-columns: 1fr; gap: 48px; padding: 60px 40px 40px; }
-    .footer-bottom { padding: 20px 40px; }
+    .footer-main { grid-template-columns: 1fr; gap: 48px; padding: 52px 36px 40px; }
+    .footer-top-bar { padding: 0 36px; }
+    .footer-divider-line { margin: 0 36px; }
+    .footer-bottom { padding: 18px 36px; }
+    .footer-tagline { max-width: 100%; }
   }
 
-  @media (max-width: 640px) {
-    .footer-top { padding: 48px 24px 36px; }
-    .footer-links { grid-template-columns: 1fr 1fr; }
-    .footer-bottom { flex-direction: column; gap: 12px; padding: 20px 24px; text-align: center; }
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .footer-top-bar { display: none; }
+    .footer-main { padding: 44px 24px 36px; gap: 36px; }
+    .footer-links { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .footer-divider-line { margin: 0 24px; }
+    .footer-bottom { padding: 18px 24px; flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  /* ── MÓVILES PEQUEÑOS ── */
+  @media (max-width: 400px) {
+    .footer-links { grid-template-columns: 1fr; }
+    .footer-main { padding: 36px 18px 28px; }
+    .footer-img-logo { width: 80px; }
   }
 </style>
