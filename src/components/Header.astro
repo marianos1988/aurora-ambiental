@@ -1,0 +1,40 @@
+---
+// src/components/Header.astro
+---
+<header>
+  <h2>Aurora Ambiental</h2>
+  <div id="menu-toggle" class="mobile-menu">☰</div>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#about">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+</style>

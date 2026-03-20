@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Section from '../components/Section.astro';
+
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+
+	<main>
+		<Section id="inicio" title="Bienvenido" parallax img="https://picsum.photos/1920/1080?1" />
+		<Section id="servicios" title="Servicios" />
+		<Section id="about" title="Sobre Nosotros" parallax img="https://picsum.photos/1920/1080?2" />
+		<Section id="contacto" title="Contacto" />
+	</main>
+
+	<Footer />
+
+	<script>
+      // Intersection Observer Animaciones
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Menu Mobile
+      const toggle = document.querySelector('#menu-toggle');
+      const header:any  = document.querySelector('header');
+
+      toggle?.addEventListener('click', () => {
+        header.classList.toggle('menu-open');
+      });
+
+      // Parallax JS (más fluido que CSS fixed)
+      window.addEventListener('scroll', () => {
+        document.querySelectorAll('.parallax').forEach((el:any) => {
+          const speed = 0.5;
+          const offset = window.scrollY * speed;
+          el.style.backgroundPositionY = offset + 'px';
+        });
+      });
+    </script>
 </Layout>
