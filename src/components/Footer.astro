@@ -1,15 +1,142 @@
 ---
 // src/components/Footer.astro
 ---
+
 <footer>
-  <p>© 2026 Mi Sitio - Todos los derechos reservados</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-mark">◆</span>
+        <span class="logo-name">Empresa</span>
+      </div>
+      <p class="footer-tagline">Construimos el futuro de tu negocio con estrategia, tecnología y propósito.</p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#about">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <a href="#servicios">Consultoría</a>
+        <a href="#servicios">Transformación Digital</a>
+        <a href="#servicios">Marca</a>
+        <a href="#servicios">Análisis de Datos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:contacto@tuempresa.com">contacto@tuempresa.com</a>
+        <a href="tel:+541112345678">+54 11 1234-5678</a>
+        <span>Buenos Aires, Argentina</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Empresa. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+    </div>
+  </div>
 </footer>
 
 <style>
   footer {
-    background: var(--primary);
+    background: var(--ink);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 80px;
+    padding: 80px 80px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .logo-mark { color: var(--accent); font-size: 0.9rem; }
+
+  .logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
     color: white;
-    text-align: center;
-    padding: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .footer-col a,
+  .footer-col span {
+    display: block;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.84rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 80px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-legal a {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-legal a:hover { color: white; }
+
+  @media (max-width: 1024px) {
+    .footer-top { grid-template-columns: 1fr; gap: 48px; padding: 60px 40px 40px; }
+    .footer-bottom { padding: 20px 40px; }
+  }
+
+  @media (max-width: 640px) {
+    .footer-top { padding: 48px 24px 36px; }
+    .footer-links { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; padding: 20px 24px; text-align: center; }
   }
 </style>
