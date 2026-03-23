@@ -9,7 +9,7 @@ import Logo from "../assets/logo2.png";
   <div class="footer-top-bar">
     <span>🌿 Comprometidos con el ambiente y el futuro del planeta</span>
     <div class="divider"></div>
-    <a href="mailto:contacto@tuempresa.com">contacto@tuempresa.com</a>
+    <a href="mailto:aurora.ambiente@gmail.com">aurora.ambiente@gmail.com</a>
   </div>
 
   <!-- Cuerpo principal -->
@@ -21,24 +21,27 @@ import Logo from "../assets/logo2.png";
         <img src={Logo.src} alt="Logo" class="footer-img-logo" />
         <div class="footer-logo-text">
           <span class="footer-logo-mark">◆</span>
-          <span class="footer-logo-name">Consultora especializada en<br/>ambiente y cambio climático.</span>
+          <span class="footer-logo-name">Expertos en<br/>ambiente y cambio climático.</span>
         </div>
       </a>
       <p class="footer-tagline">
         Acompañamos a organizaciones en su transición hacia un desarrollo más sostenible, con rigor técnico y compromiso ambiental.
       </p>
       <div class="footer-social">
-        <a href="#" aria-label="LinkedIn">
+        <a href="#" aria-label="LinkedIn" class="social-link">
+          <span class="social-bg"></span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
           </svg>
         </a>
-        <a href="#" aria-label="Instagram">
+        <a href="#" aria-label="Instagram" class="social-link">
+          <span class="social-bg"></span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
           </svg>
         </a>
-        <a href="#" aria-label="Twitter / X">
+        <a href="#" aria-label="Twitter / X" class="social-link">
+          <span class="social-bg"></span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4l16 16M4 20L20 4"/>
           </svg>
@@ -64,15 +67,14 @@ import Logo from "../assets/logo2.png";
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
-        <a href="mailto:contacto@tuempresa.com">contacto@tuempresa.com</a>
-        <a href="tel:+541112345678">+54 11 1234-5678</a>
-        <span>Buenos Aires, Argentina</span>
+        <a href="mailto:contacto@tuempresa.com">aurora.ambiente@gmail.com</a>
+        <span class="footer-location">Buenos Aires, Argentina</span>
       </div>
     </div>
 
   </div>
 
-  <!-- Línea degradada verde — espejo de la del header -->
+  <!-- Línea degradada verde -->
   <div class="footer-divider-line"></div>
 
   <!-- Bottom bar -->
@@ -87,7 +89,6 @@ import Logo from "../assets/logo2.png";
 </footer>
 
 <style>
-  /* ── VARIABLES (por si el footer se usa aislado) ── */
   :root {
     --green-deep:  #1a3a2a;
     --green-mid:   #2d6a4f;
@@ -95,7 +96,6 @@ import Logo from "../assets/logo2.png";
     --green-pale:  #d8f3dc;
   }
 
-  /* ── FOOTER WRAPPER ── */
   footer {
     background: var(--green-deep);
     color: rgba(255,255,255,0.55);
@@ -103,7 +103,7 @@ import Logo from "../assets/logo2.png";
     font-family: 'DM Sans', sans-serif;
   }
 
-  /* ── TOP BAR — espejo exacto del header ── */
+  /* ── TOP BAR ── */
   .footer-top-bar {
     width: 100%;
     height: 36px;
@@ -118,7 +118,7 @@ import Logo from "../assets/logo2.png";
   .footer-top-bar span {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: rgba(216, 243, 220, 0.75);
+    color: rgba(216,243,220,0.75);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -136,11 +136,23 @@ import Logo from "../assets/logo2.png";
     text-decoration: none;
     white-space: nowrap;
     flex-shrink: 0;
-    transition: color 0.2s;
+    position: relative;
+    transition: color 0.25s;
+  }
+  .footer-top-bar a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
   }
   .footer-top-bar a:hover { color: white; }
+  .footer-top-bar a:hover::after { width: 100%; }
 
-  /* ── FOOTER MAIN ── */
+  /* ── MAIN ── */
   .footer-main {
     display: grid;
     grid-template-columns: 1.3fr 2fr;
@@ -148,13 +160,14 @@ import Logo from "../assets/logo2.png";
     padding: 64px 48px 52px;
   }
 
-  /* ── BRAND ── */
+  /* ── LOGO ── */
   .footer-logo {
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
     margin-bottom: 20px;
+    width: fit-content;
   }
   .footer-img-logo {
     width: 100px;
@@ -162,10 +175,12 @@ import Logo from "../assets/logo2.png";
     object-fit: contain;
     opacity: 0.9;
     flex-shrink: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .footer-logo:hover .footer-img-logo { opacity: 1; }
-
+  .footer-logo:hover .footer-img-logo {
+    opacity: 1;
+    transform: scale(1.04);
+  }
   .footer-logo-text {
     display: flex;
     align-items: flex-start;
@@ -176,7 +191,9 @@ import Logo from "../assets/logo2.png";
     font-size: 0.6rem;
     margin-top: 5px;
     flex-shrink: 0;
+    transition: transform 0.35s ease;
   }
+  .footer-logo:hover .footer-logo-mark { transform: rotate(45deg); }
   .footer-logo-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.95rem;
@@ -184,7 +201,9 @@ import Logo from "../assets/logo2.png";
     color: rgba(255,255,255,0.9);
     letter-spacing: 0.02em;
     line-height: 1.35;
+    transition: color 0.25s;
   }
+  .footer-logo:hover .footer-logo-name { color: #fff; }
 
   .footer-tagline {
     font-size: 0.82rem;
@@ -194,12 +213,10 @@ import Logo from "../assets/logo2.png";
     margin-bottom: 28px;
   }
 
-  /* Íconos sociales */
-  .footer-social {
-    display: flex;
-    gap: 10px;
-  }
-  .footer-social a {
+  /* ── SOCIAL ── */
+  .footer-social { display: flex; gap: 10px; }
+  .social-link {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -209,15 +226,28 @@ import Logo from "../assets/logo2.png";
     border-radius: 4px;
     color: rgba(255,255,255,0.45);
     text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    overflow: hidden;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
   }
-  .footer-social a:hover {
+  .social-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index: 0;
+  }
+  .social-link svg { position: relative; z-index: 1; transition: transform 0.3s; }
+  .social-link:hover {
     border-color: var(--green-light);
-    color: var(--green-light);
-    background: rgba(82,183,136,0.08);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(82,183,136,0.2);
   }
+  .social-link:hover .social-bg { transform: translateY(0); }
+  .social-link:hover svg { transform: scale(1.12); }
 
-  /* ── LINKS ── */
+  /* ── LINKS COLUMNAS ── */
   .footer-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -232,22 +262,47 @@ import Logo from "../assets/logo2.png";
     margin-bottom: 18px;
     font-weight: 500;
   }
-  .footer-col a,
-  .footer-col span {
-    display: block;
-    color: rgba(255,255,255,0.38);
+
+  /* Links: subrayado que crece desde la izquierda */
+  .footer-col a {
+    display: inline-block;
+    position: relative;
+    color: rgba(255,255,255,0.4);
     text-decoration: none;
-    margin-bottom: 10px;
+    margin-bottom: 11px;
     font-size: 0.82rem;
     line-height: 1.5;
-    transition: color 0.2s, padding-left 0.2s;
+    transition: color 0.25s ease;
+    padding-bottom: 2px;
+  }
+  .footer-col a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--green-light);
+    transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
   }
   .footer-col a:hover {
-    color: rgba(255,255,255,0.85);
-    padding-left: 4px;
+    color: rgba(255,255,255,0.9);
+  }
+  .footer-col a:hover::after {
+    width: 100%;
   }
 
-  /* ── LÍNEA DEGRADADA — espejo del header ── */
+  /* Texto estático (Buenos Aires) */
+  .footer-location {
+    display: block;
+    color: rgba(255,255,255,0.28);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-bottom: 11px;
+    font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
   .footer-divider-line {
     height: 2px;
     background: linear-gradient(90deg, var(--green-mid) 0%, var(--green-light) 50%, transparent 100%);
@@ -255,7 +310,7 @@ import Logo from "../assets/logo2.png";
     margin: 0 48px;
   }
 
-  /* ── BOTTOM BAR ── */
+  /* ── BOTTOM ── */
   .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -265,16 +320,26 @@ import Logo from "../assets/logo2.png";
     color: rgba(255,255,255,0.25);
     letter-spacing: 0.03em;
   }
-  .footer-legal {
-    display: flex;
-    gap: 24px;
-  }
+  .footer-legal { display: flex; gap: 24px; }
   .footer-legal a {
+    position: relative;
     color: rgba(255,255,255,0.25);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.25s;
+    padding-bottom: 2px;
   }
-  .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+  .footer-legal a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    height: 1px;
+    background: var(--green-light);
+    transition: left 0.3s ease, right 0.3s ease;
+  }
+  .footer-legal a:hover { color: rgba(255,255,255,0.65); }
+  .footer-legal a:hover::after { left: 0; right: 0; }
 
   /* ── TABLET ── */
   @media (max-width: 1024px) {
