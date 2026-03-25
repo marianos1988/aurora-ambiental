@@ -1,7 +1,10 @@
 ---
 // src/pages/index.astro
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.astro'
+import Carousel1 from "../assets/carousel/1.jpg";
+import Carousel2 from "../assets/carousel/2.jpg";
+import FranMagni from "../assets/profesionals/franmagni.jpg";
 ---
 
 <html lang="es">
@@ -618,17 +621,28 @@ import Footer from '../components/Footer.astro';
 
       /* ── EQUIPO ── */
       #equipo {
-        padding: 100px 72px;
+        padding: 100px 24px;
         background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
+
       .team-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+
+        display: flex;
+        margin-top: 50px;
+        flex-wrap: wrap;
         gap: 24px;
-        margin-top: 56px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
       }
       .team-card {
         background: var(--white);
+        width:300px;
+        height: 250px;
         border: 1px solid var(--border);
         padding: 36px 28px;
         text-align: center;
@@ -650,6 +664,14 @@ import Footer from '../components/Footer.astro';
         justify-content: center;
         font-size: 1.6rem;
         margin: 0 auto 18px;
+        border: 2px solid var(--green-light);
+      }
+
+      .team-avatar img {
+
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
         border: 2px solid var(--green-light);
       }
       .team-role {
@@ -763,7 +785,7 @@ import Footer from '../components/Footer.astro';
         #about { grid-template-columns: 1fr; }
         .about-image { min-height: 360px; }
         .about-content { padding: 60px 40px; }
-        .team-grid { grid-template-columns: repeat(2, 1fr); }
+
         #contacto { grid-template-columns: 1fr; gap: 56px; }
 
         /* Carousel tablet — 2 slides visibles */
@@ -779,7 +801,7 @@ import Footer from '../components/Footer.astro';
         #servicios, #ejes, #equipo, #contacto { padding: 64px 24px; }
         .about-content { padding: 48px 24px; }
         .about-pillars { grid-template-columns: 1fr; }
-        .team-grid { grid-template-columns: repeat(2, 1fr); }
+
         .form-row { grid-template-columns: 1fr; }
         .stats-bar { grid-template-columns: 1fr; }
         .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -800,7 +822,7 @@ import Footer from '../components/Footer.astro';
       }
 
       @media (max-width: 480px) {
-        .team-grid { grid-template-columns: 1fr; }
+
         .btn-ghost { margin-left: 0; margin-top: 12px; }
         #galeria { --c-pad: 16px; }
       }
@@ -945,16 +967,16 @@ import Footer from '../components/Footer.astro';
         <div class="carousel-viewport" id="carousel-viewport">
           <div class="carousel-track" id="carousel-track">
 
-            <div class="carousel-slide">
+            <!-- <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="Bosque nativo" loading="lazy" />
               <div class="slide-caption">
                 <span class="slide-caption-label">Biodiversidad</span>
                 <span class="slide-caption-title">Bosques nativos como reservorios de carbono</span>
               </div>
-            </div>
+            </div> -->
 
             <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80" alt="Derretimiento glacial" loading="lazy" />
+              <img src={Carousel1.src} alt="Derretimiento glacial" loading="lazy" />
               <div class="slide-caption">
                 <span class="slide-caption-label">Cambio climático</span>
                 <span class="slide-caption-title">Glaciares en retroceso por el calentamiento global</span>
@@ -1002,7 +1024,7 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&q=80" alt="Océanos" loading="lazy" />
+              <img src={Carousel2.src} alt="Océanos" loading="lazy" />
               <div class="slide-caption">
                 <span class="slide-caption-label">Océanos</span>
                 <span class="slide-caption-title">Mares saludables, clima estable</span>
@@ -1026,7 +1048,7 @@ import Footer from '../components/Footer.astro';
             Expertos en<br/><em>ambiente</em><br/>y clima
           </h1>
           <p class="hero-sub reveal reveal-delay-2">
-            Somos una consultora interdisciplinaria especializada en asesoramiento, análisis y desarrollo de proyectos y políticas sostenibles basadas en evidencia científica.
+            Somos un think tank especializados en asesoramiento, análisis y desarrollo de proyectos y políticas sostenibles basadas en evidencia científica.
           </p>
           <div class="reveal reveal-delay-3">
             <a href="#servicios" class="btn-primary">
@@ -1206,14 +1228,11 @@ import Footer from '../components/Footer.astro';
             <div class="team-name">Abogados</div>
           </div>
           <div class="team-card reveal reveal-delay-1">
-            <div class="team-avatar">🌿</div>
+            <div class="team-avatar">
+              <img src={FranMagni.src} alt="">
+            </div>
             <div class="team-role">Ciencias Ambientales</div>
             <div class="team-name">Lic. en Cs. Ambientales - Francisco Magni</div>
-          </div>
-          <div class="team-card reveal reveal-delay-2">
-            <div class="team-avatar">🧠</div>
-            <div class="team-role">Ciencias Sociales</div>
-            <div class="team-name">Psicología</div>
           </div>
           <div class="team-card reveal reveal-delay-3">
             <div class="team-avatar">🌾</div>
@@ -1227,7 +1246,8 @@ import Footer from '../components/Footer.astro';
       <section id="contacto">
         <div class="contact-intro">
           <span class="section-label reveal">Hablemos</span>
-          <h2 class="section-title reveal reveal-delay-1">¿Tu organización busca<br/>una <em>agenda ambiental</em>?</h2>
+
+          <h2 class="section-title reveal reveal-delay-1">¿Tu organización busca<br/> consultores y expertos para proyectos orientados a la <em>protección del ambiente o mitigación del cambio climático</em>?</h2>
           <p class="reveal reveal-delay-2">
             Contanos sobre tu proyecto o necesidad y en menos de 48 horas te respondemos con una propuesta inicial sin costo.
           </p>
