@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import Carousel1 from "../assets/carousel/1.jpg";
 import Carousel2 from "../assets/carousel/2.jpg";
 import FranMagni from "../assets/profesionals/franmagni.jpg";
+import GiseMunno from "../assets/profesionals/gisemunno.jpg";
 ---
 
 <html lang="es">
@@ -368,7 +369,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       .galeria-header .section-title { color: var(--white); }
       .galeria-header .section-title em { color: var(--green-light); }
 
-      /* ── Controles prev/next — diseño circular refinado ── */
       .carousel-controls {
         display: flex;
         gap: 12px;
@@ -392,7 +392,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         overflow: hidden;
         transition: border-color 0.3s ease, color 0.3s ease, transform 0.25s ease;
       }
-      /* Fondo que aparece al hover */
       .carousel-btn::before {
         content: '';
         position: absolute;
@@ -418,12 +417,9 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       .carousel-btn:hover::before { transform: scale(1); }
       .carousel-btn:hover svg { transform: scale(1.1); }
       .carousel-btn:active { transform: scale(0.96); }
-      /* Flecha prev: desplaza levemente a la izquierda al hover */
       #prev-btn:hover svg { transform: translateX(-1px) scale(1.1); }
-      /* Flecha next: desplaza levemente a la derecha al hover */
       #next-btn:hover svg { transform: translateX(1px) scale(1.1); }
 
-      /* ── Viewport y track ── */
       .carousel-viewport {
         overflow: hidden;
         width: 100%;
@@ -440,7 +436,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         will-change: transform;
       }
 
-      /* ── Cada slide ── */
       .carousel-slide {
         flex: 0 0 calc((100% - var(--c-pad) * 2 - var(--c-gap) * (var(--c-visible) - 1)) / var(--c-visible));
         min-width: 0;
@@ -463,7 +458,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         filter: saturate(1) brightness(0.95);
       }
 
-      /* ── Caption overlay ── */
       .slide-caption {
         position: absolute;
         inset: 0;
@@ -492,7 +486,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         line-height: 1.3;
       }
 
-      /* ── Dots ── */
       .carousel-dots {
         display: flex;
         justify-content: center;
@@ -524,21 +517,23 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         min-height: 75vh;
       }
 
+      /* ── FIX: about-image ahora usa layout normal sin position absolute ── */
       .about-image {
         position: relative;
         overflow: hidden;
         min-height: 400px;
       }
+
       .about-image img {
         width: 100%;
-        height: 130%;
+        height: 100%;
         object-fit: cover;
-        position: absolute;
-        top: -15%;
-        left: 0;
-        will-change: transform;
+        object-position: center;
+        display: block;
         filter: grayscale(15%) saturate(0.85);
+        will-change: transform;
       }
+
       .about-image::after {
         content: '';
         position: absolute;
@@ -630,7 +625,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       }
 
       .team-grid {
-
         display: flex;
         margin-top: 50px;
         flex-wrap: wrap;
@@ -668,7 +662,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       }
 
       .team-avatar img {
-
         width: 64px;
         height: 64px;
         border-radius: 50%;
@@ -785,10 +778,7 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         #about { grid-template-columns: 1fr; }
         .about-image { min-height: 360px; }
         .about-content { padding: 60px 40px; }
-
         #contacto { grid-template-columns: 1fr; gap: 56px; }
-
-        /* Carousel tablet — 2 slides visibles */
         #galeria { --c-pad: 40px; --c-gap: 16px; --c-visible: 2; }
       }
 
@@ -801,13 +791,10 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         #servicios, #ejes, #equipo, #contacto { padding: 64px 24px; }
         .about-content { padding: 48px 24px; }
         .about-pillars { grid-template-columns: 1fr; }
-
         .form-row { grid-template-columns: 1fr; }
         .stats-bar { grid-template-columns: 1fr; }
         .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .stat-item:last-child { border-bottom: none; }
-
-        /* Carousel mobile — 1 slide visible, centrado */
         #galeria {
           padding: 56px 0 52px;
           --c-pad: 24px;
@@ -822,120 +809,10 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       }
 
       @media (max-width: 480px) {
-
         .btn-ghost { margin-left: 0; margin-top: 12px; }
         #galeria { --c-pad: 16px; }
       }
-    
-/* ===== CAROUSEL RESPONSIVE FIX (AUTO-ADDED) ===== */
-.carousel-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  height: clamp(220px, 40vw, 420px);
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: #000;
-  transition: transform 0.6s ease;
-}
-
-.carousel-slide:hover img {
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .carousel-track {
-    justify-content: center;
-  }
-
-  .carousel-slide {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
-
-/* ===== CAROUSEL FIX V2 (NO CROP + TRUE CENTER) ===== */
-.carousel-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  padding: 10px;
-  height: auto;
-}
-
-.carousel-slide img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  object-position: center;
-}
-
-/* Ensure track alignment */
-.carousel-track {
-  align-items: center;
-}
-
-/* Mobile improvement */
-@media (max-width: 768px) {
-  .carousel-slide img {
-    max-height: 60vh;
-  }
-}
-
-
-/* ===== CAROUSEL FIX V3 (IMAGE = CAPTION + MOBILE CENTER) ===== */
-
-/* Slide as positioning context */
-.carousel-slide {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #000;
-}
-
-/* Image fills exactly like caption */
-.carousel-slide img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* fill like caption */
-  object-position: center;
-}
-
-/* Caption always same size as image */
-.slide-caption {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: flex-end;
-  padding: 22px 20px;
-}
-
-/* MOBILE FIX: center caption content */
-@media (max-width: 768px) {
-  .slide-caption {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: rgba(26,58,42,0.55); /* más legible */
-  }
-}
-
-</style>
+    </style>
   </head>
 
   <body>
@@ -967,67 +844,45 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         <div class="carousel-viewport" id="carousel-viewport">
           <div class="carousel-track" id="carousel-track">
 
-            <!-- <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="Bosque nativo" loading="lazy" />
-              <div class="slide-caption">
-                <span class="slide-caption-label">Biodiversidad</span>
-                <span class="slide-caption-title">Bosques nativos como reservorios de carbono</span>
-              </div>
-            </div> -->
-
             <div class="carousel-slide">
               <img src={Carousel1.src} alt="Derretimiento glacial" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Cambio climático</span>
-                <span class="slide-caption-title">Glaciares en retroceso por el calentamiento global</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=800&q=80" alt="Energía solar" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Energías renovables</span>
-                <span class="slide-caption-title">Transición hacia una matriz energética limpia</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=800&q=80" alt="Ríos y cuencas" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Recursos hídricos</span>
-                <span class="slide-caption-title">Gestión sostenible de cuencas y ríos</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Montañas y ecosistemas" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Ecosistemas</span>
-                <span class="slide-caption-title">Protección de ecosistemas de montaña</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" alt="Agroecología" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Agroecología</span>
-                <span class="slide-caption-title">Sistemas productivos en armonía con la naturaleza</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800&q=80" alt="Humedales" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Humedales</span>
-                <span class="slide-caption-title">Los pulmones ocultos de la biodiversidad</span>
               </div>
             </div>
 
             <div class="carousel-slide">
               <img src={Carousel2.src} alt="Océanos" loading="lazy" />
               <div class="slide-caption">
-                <span class="slide-caption-label">Océanos</span>
-                <span class="slide-caption-title">Mares saludables, clima estable</span>
               </div>
             </div>
 
@@ -1106,9 +961,9 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
           </div>
           <div class="service-card reveal reveal-delay-2">
             <div class="service-number">03</div>
-            <h3 class="service-name">Medición MRV & Metano</h3>
+            <h3 class="service-name">Metano</h3>
             <div class="service-divider"></div>
-            <p class="service-desc">Sistemas de Monitoreo, Reporte y Verificación de emisiones de metano con estándares internacionales.</p>
+            <p class="service-desc">Asesoramiento en Regulación y Políticas  orientadas a la Mitigación de las emisiones de metano en sector energético y sector residuos..</p>
           </div>
           <div class="service-card reveal">
             <div class="service-number">04</div>
@@ -1120,7 +975,7 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
             <div class="service-number">05</div>
             <h3 class="service-name">Plan GIRSU & Economía Circular</h3>
             <div class="service-divider"></div>
-            <p class="service-desc">Gestión integral de residuos sólidos urbanos y diseño de estrategias de economía circular para organizaciones.</p>
+            <p class="service-desc">Asesoramiento  en regulación y políticas sobre gestión integral de residuos sólidos urbanos y diseño de estrategias de economía circular.</p>
           </div>
           <div class="service-card reveal reveal-delay-2">
             <div class="service-number">06</div>
@@ -1130,9 +985,9 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
           </div>
           <div class="service-card reveal">
             <div class="service-number">07</div>
-            <h3 class="service-name">Mitigación & Adaptación</h3>
+            <h3 class="service-name">Cambio Climático</h3>
             <div class="service-divider"></div>
-            <p class="service-desc">Políticas de mitigación y adaptación al cambio climático. Análisis y revisión de inventarios GEI.</p>
+            <p class="service-desc">Asesoramiento en políticas de Mitigación y Adaptación al Cambio Climático. Análisis de Inventarios GEIs.</p>
           </div>
           <div class="service-card reveal reveal-delay-1">
             <div class="service-number">08</div>
@@ -1223,9 +1078,11 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
         </div>
         <div class="team-grid">
           <div class="team-card reveal">
-            <div class="team-avatar">⚖️</div>
+            <div class="team-avatar">
+              <img src={GiseMunno.src} alt="">
+            </div>
             <div class="team-role">Derecho Ambiental</div>
-            <div class="team-name">Abogados</div>
+            <div class="team-name">Abogada - Giselle Munno</div>
           </div>
           <div class="team-card reveal reveal-delay-1">
             <div class="team-avatar">
@@ -1246,7 +1103,6 @@ import FranMagni from "../assets/profesionals/franmagni.jpg";
       <section id="contacto">
         <div class="contact-intro">
           <span class="section-label reveal">Hablemos</span>
-
           <h2 class="section-title reveal reveal-delay-1">¿Tu organización busca<br/> consultores y expertos para proyectos orientados a la <em>protección del ambiente o mitigación del cambio climático</em>?</h2>
           <p class="reveal reveal-delay-2">
             Contanos sobre tu proyecto o necesidad y en menos de 48 horas te respondemos con una propuesta inicial sin costo.
@@ -1395,9 +1251,9 @@ function goTo(index:any, instant = false) {
   const max = Math.max(0, total - visibleCount());
 
   if (index < 0) {
-    current = max; // loop al final
+    current = max;
   } else if (index > max) {
-    current = 0; // loop al inicio
+    current = 0;
   } else {
     current = index;
   }
@@ -1438,8 +1294,7 @@ function startAuto() {
 
   autoTimer = setInterval(() => {
     if (isPaused) return;
-
-    goTo(current + 1); // ahora ya hace loop automático
+    goTo(current + 1);
   }, 4000);
 }
 
@@ -1480,7 +1335,6 @@ function startAuto() {
   function onStart(x:any) {
     isDragging = true;
     pauseAuto();
-
     dragStartX = x;
     dragDelta = 0;
     track.style.transition = 'none';
@@ -1488,24 +1342,18 @@ function startAuto() {
 
   function onMove(x:any) {
     if (!isDragging) return;
-
     dragDelta = x - dragStartX;
-
     track.style.transform =
       `translateX(-${getOffset(current) - dragDelta}px)`;
   }
 
   function onEnd() {
     if (!isDragging) return;
-
     isDragging = false;
-
     const threshold = viewport.offsetWidth * 0.12;
-
     if (dragDelta < -threshold) goTo(current + 1);
     else if (dragDelta > threshold) goTo(current - 1);
     else goTo(current);
-
     resumeAuto();
     restartAuto();
   }
@@ -1528,7 +1376,6 @@ function startAuto() {
   let resizeTimer:any;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-
     resizeTimer = setTimeout(() => {
       buildDots();
       goTo(Math.min(current, Math.max(0, total - visibleCount())), true);
