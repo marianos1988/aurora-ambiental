@@ -6,6 +6,7 @@ import Carousel1 from "../assets/carousel/1.jpg";
 import Carousel2 from "../assets/carousel/2.jpg";
 import FranMagni from "../assets/profesionals/franmagni.jpg";
 import GiseMunno from "../assets/profesionals/gisemunno.jpg";
+import Form from '../components/Form.jsx';
 ---
 
 <html lang="es">
@@ -721,50 +722,6 @@ import GiseMunno from "../assets/profesionals/gisemunno.jpg";
       }
       .contact-detail strong { color: var(--green-deep); font-weight: 500; display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1px; }
 
-      .contact-form { display: flex; flex-direction: column; gap: 18px; }
-      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-      .form-group { display: flex; flex-direction: column; gap: 7px; }
-      .form-group label {
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        padding: 13px 16px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 0.86rem;
-        color: var(--ink);
-        outline: none;
-        border-radius: 2px;
-        transition: border-color 0.2s, background 0.2s;
-        appearance: none;
-        resize: none;
-      }
-      .form-group input:focus,
-      .form-group textarea:focus,
-      .form-group select:focus { border-color: var(--green-light); background: var(--white); }
-      .form-group textarea { min-height: 120px; }
-
-      .btn-submit {
-        background: var(--green-mid);
-        color: var(--white);
-        border: none;
-        padding: 16px 36px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 0.78rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 2px;
-        align-self: flex-start;
-        transition: background 0.3s;
-      }
-      .btn-submit:hover { background: var(--green-deep); }
 
       /* ══════════════════════════════════════
          RESPONSIVE
@@ -1123,24 +1080,25 @@ import GiseMunno from "../assets/profesionals/gisemunno.jpg";
           </div>
         </div>
 
-        <form class="contact-form reveal reveal-delay-1">
+        <Form client:load></Form>
+        <!-- <form class="contact-form reveal reveal-delay-1" action="https://formsubmit.co/aurora.ambiente@gmail.com" method="POST" id="submit-form-contactus">
           <div class="form-row">
             <div class="form-group">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" placeholder="Tu nombre" />
+              <input type="text" id="form-nombre" placeholder="Tu nombre" />
             </div>
             <div class="form-group">
               <label for="org">Organización</label>
-              <input type="text" id="org" placeholder="Tu organización" />
+              <input type="text" id="form-org" placeholder="Tu organización" />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="tu@email.com" />
+            <input type="email" id="form-email" placeholder="tu@email.com" />
           </div>
           <div class="form-group">
             <label for="servicio">Servicio de interés</label>
-            <select id="servicio">
+            <select id="form-servicio">
               <option value="">Seleccioná una opción</option>
               <option>Geopolítica Ambiental</option>
               <option>Gobernanza Climática</option>
@@ -1156,10 +1114,10 @@ import GiseMunno from "../assets/profesionals/gisemunno.jpg";
           </div>
           <div class="form-group">
             <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" placeholder="Contanos sobre tu proyecto u organización..."></textarea>
+            <textarea id="form-mensaje" placeholder="Contanos sobre tu proyecto u organización..."></textarea>
           </div>
           <button type="submit" class="btn-submit">Enviar consulta</button>
-        </form>
+        </form> -->
       </section>
 
     </main>
@@ -1382,6 +1340,59 @@ function startAuto() {
     }, 120);
   });
 })();
+
+
+//Enviar Formulario
+// function sendForm() {
+
+//   const subtmit = document.querySelector<any>("#submit-form-contactus").addEventListener("submit", async (e:any) => {
+//     e.preventDefault();
+//     document.querySelector<any>(".message").textContent= ``
+
+
+
+//     const object:any = {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "aplicaction/json",
+//         "Accept": "aplication/json"
+//       },
+//       body: JSON.stringify({
+//         nombre: document.querySelector<any>("#form-nombre").value,
+//         organizacion: document.querySelector<any>("#form-org").value,
+//         email: document.querySelector<any>("#form-email").value,
+//         servicio: document.querySelector<any>("#form-servicio").value,
+//         mensaje: document.querySelector<any>("#form-mensaje").value,
+//       })
+//     };
+//     console.log(object.body)
+//     // try{
+      
+//     //   document.querySelector<any>(".box-spinner").innerHTML=`<div class="spinner"></div>`;
+//     //   const JSONData = await fetch("https://formsubmit.co/ajax/ruizymirandona@gmail.com",object);
+//     //   const data = await JSONData.json();
+//     //   document.querySelector<any>(".box-spinner").innerHTML=``;
+      
+//     //   if(data.success) {
+//     //     document.querySelector<any>("#form-name").value="";
+//     //     document.querySelector<any>("#form-email").value="";
+//     //     document.querySelector<any>("#form-comments").value="";
+//     //     document.querySelector<any>("#form-phone").value="";
+//     //     document.querySelector<any>(".message").style.color=`green`;
+//     //     document.querySelector<any>(".message").textContent=`Mensaje enviado`;
+
+//     //   }
+//     //   else {
+//     //     document.querySelector<any>(".message").style.color=`red`;
+//     //     document.querySelector<any>(".message").textContent=`Mensaje no enviado`;
+//     //   }
+//     // } catch(e) {
+//     //   document.querySelector<any>(".message").style.color=`red`;
+//     //   document.querySelector<any>(".message").textContent=`Error de conexion`;
+//     // }
+//   });
+
+// }
     </script>
   </body>
 </html>
