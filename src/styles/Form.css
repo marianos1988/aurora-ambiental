@@ -2,9 +2,26 @@
 
 
 
-      .contact-form { display: flex; flex-direction: column; gap: 18px; }
-      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-      .form-group { display: flex; flex-direction: column; gap: 7px; }
+      .contact-form { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 18px; 
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+      .form-row { 
+        display: grid; 
+        grid-template-columns: 1fr; 
+        gap: 14px; 
+      }
+      .form-group { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 7px; 
+        min-width: 0;
+      }
       .form-group label {
         font-size: 0.68rem;
         letter-spacing: 0.14em;
@@ -35,14 +52,84 @@
         background: var(--green-mid);
         color: var(--white);
         border: none;
-        padding: 16px 36px;
+        padding: 14px 28px;
         font-family: 'DM Sans', sans-serif;
         font-size: 0.78rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         cursor: pointer;
         border-radius: 2px;
-        align-self: flex-start;
         transition: background 0.3s;
+        white-space: nowrap;
       }
       .btn-submit:hover { background: var(--green-deep); }
+
+      .box-btns-notifications {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .box-notifications {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .box-notifications h2 {
+        text-align: center;
+      }
+      .box-notifications h2.text-red {
+        color: red;
+        animation: aparecer .5s ease-in;
+      }
+
+      .box-notifications h2.text-green {
+        color: rgb(1, 102, 1);
+        animation: aparecer .5s ease-in;
+      }
+
+      @keyframes aparecer {
+
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .form-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .box-btns-notifications {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+        .box-notifications {
+          flex-direction: row;
+          justify-content: left;
+        }
+        .box-notifications h2 {
+          text-align: left;
+          margin-left: 15px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .contact-form {
+          max-width: 720px;
+        }
+        .form-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }

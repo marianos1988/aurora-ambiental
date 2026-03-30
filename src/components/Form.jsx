@@ -1,6 +1,6 @@
 import "../styles/Form.css";
 import { useState } from "react";
-// import Spinner from "./Spinner";
+import Spinner from "./Spinner";
 
 export default function Form() {
 
@@ -13,11 +13,11 @@ export default function Form() {
     }
     const [form, setForm] = useState(initialForm);
 
-    // const initialMessage = {
-    //     message: "",
-    //     color: ""
-    // }
-    // const [message, setMessage] = useState(initialMessage);
+    const initialMessage = {
+        message: "Hola",
+        color: "reddd"
+    }
+    const [message, setMessage] = useState(initialMessage);
 
 
     // const initialSpinner = false
@@ -107,7 +107,6 @@ export default function Form() {
                             } 
                         }
 
-                        console.log(objectSubmit.body)
 
                         // setStateSpinner(true)
 
@@ -176,7 +175,16 @@ export default function Form() {
           <label htmlFor="mensaje">Mensaje</label>
           <textarea id="mensaje" placeholder="Contanos sobre tu proyecto u organización..." name="mensaje" onChange={ onInputChange }></textarea>
         </div>
-        <button type="submit" className="btn-submit" onClick={ submit }>Enviar consulta</button>
+        <div className="box-btns-notifications">
+          <button type="submit" className="btn-submit" onClick={ submit }>Enviar consulta</button>
+          <Spinner 
+            state={true}
+          />
+          <div className="box-notifications">
+            <h2 className={(message.color === "green" ? "text-green" : "text-red")}>{message.message}</h2>
+          </div>
+        </div>
+
       </form>
       )
             

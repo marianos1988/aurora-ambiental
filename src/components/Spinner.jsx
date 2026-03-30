@@ -1,14 +1,14 @@
 
-import "../../styles/contact/Spinner.css"
+import "../styles/Spinner.css"
 
 export default function Spinner({ state }) {
 
   return (
-    <div className={(state) ? "spinner-4" : ""}></div>
+    <div className={(state) ? "spinner-dots" : ""}>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   )
 }
-
-
-
-
 
