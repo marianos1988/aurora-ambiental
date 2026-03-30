@@ -422,11 +422,12 @@ import Form from '../components/Form.jsx';
 
       .carousel-slide {
         min-width: 100%;
-        min-height: 100%;
         width: 100%;
-        height: 400px;
+        height: 0;
+        padding-bottom: 56.25%;
         position: relative;
         overflow: hidden;
+        background: #0f1a12;
       }
       .carousel-slide img {
         position: absolute;
@@ -434,7 +435,7 @@ import Form from '../components/Form.jsx';
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
         display: block;
       }
@@ -889,7 +890,7 @@ import Form from '../components/Form.jsx';
 
         /* Carousel mobile */
         .carousel-wrapper { padding: 0 60px; }
-        .carousel-slide { height: 300px; }
+        .carousel-slide { padding-bottom: 66.67%; }
         #prev-btn { left: 10px; }
         #next-btn { right: 10px; }
         .carousel-btn { width: 40px; height: 40px; }
@@ -906,7 +907,7 @@ import Form from '../components/Form.jsx';
         .stat-item { padding: 24px 16px; }
         .team-card { width: 100%; max-width: 100%; }
         .carousel-wrapper { padding: 0 50px; }
-        .carousel-slide { height: 250px; }
+        .carousel-slide { padding-bottom: 75%; }
         #prev-btn { left: 5px; }
         #next-btn { right: 5px; }
         .carousel-btn { width: 36px; height: 36px; }
