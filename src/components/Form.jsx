@@ -142,20 +142,20 @@ export default function Form() {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="nombre">Nombre</label>
-            <input type="text" id="nombre" placeholder="Tu nombre" name="nombre" onChange={ onInputChange }/>
+            <input type="text" id="nombre" placeholder="Tu nombre" name="nombre" value={form.nombre} onChange={ onInputChange }/>
           </div>
           <div className="form-group">
             <label htmlFor="org">Organización</label>
-            <input type="text" id="organizacion" placeholder="Tu organización" name="organizacion" onChange={ onInputChange }/>
+            <input type="text" id="organizacion" placeholder="Tu organización" name="organizacion" value={form.organizacion} onChange={ onInputChange }/>
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="tu@email.com" name="email" onChange={ onInputChange } />
+          <input type="email" id="email" placeholder="tu@email.com" name="email" value={form.email} onChange={ onInputChange } />
         </div>
         <div className="form-group">
           <label htmlFor="servicio">Servicio de interés</label>
-          <select id="servicio" name="servicio" onChange={ onInputChange }>
+          <select id="servicio" name="servicio" value={form.servicio} onChange={ onInputChange }>
             <option value="">Seleccioná una opción</option>
             <option>Geopolítica Ambiental</option>
             <option>Gobernanza Climática</option>
@@ -171,7 +171,7 @@ export default function Form() {
         </div>
         <div className="form-group">
           <label htmlFor="mensaje">Mensaje</label>
-          <textarea id="mensaje" placeholder="Contanos sobre tu proyecto u organización..." name="mensaje" onChange={ onInputChange }></textarea>
+          <textarea id="mensaje" placeholder="Contanos sobre tu proyecto u organización..." name="mensaje" value={form.mensaje} onChange={ onInputChange }></textarea>
         </div>
         <div className="box-btns-notifications">
           <button type="submit" className="btn-submit" onClick={ submit }>Enviar consulta</button>
