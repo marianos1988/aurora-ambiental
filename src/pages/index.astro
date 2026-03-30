@@ -4,6 +4,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro'
 import Carousel1 from "../assets/carousel/1.jpg";
 import Carousel2 from "../assets/carousel/2.jpg";
+import Carousel3 from "../assets/carousel/3.jpg";
+import Carousel4 from "../assets/carousel/4.jpg";
+import Carousel5 from "../assets/carousel/5.jpg";
+import Carousel6 from "../assets/carousel/6.jpg";
+import Carousel7 from "../assets/carousel/7.jpg";
+import Carousel8 from "../assets/carousel/8.jpg";
+import Carousel9 from "../assets/carousel/9.jpg";
+import Carousel10 from "../assets/carousel/10.jpg";
 import FranMagni from "../assets/profesionals/franmagni.jpg";
 import GiseMunno from "../assets/profesionals/gisemunno.jpg";
 import Form from '../components/Form.jsx';
@@ -366,17 +374,12 @@ import Form from '../components/Form.jsx';
       #galeria {
         background: var(--green-deep);
         padding: 64px 0 60px;
-        overflow: hidden;        /* clip interno del track */
         position: relative;
         width: 100%;
-        /* Variables del carousel */
-        --c-pad: var(--px);
-        --c-gap: 20px;
-        --c-visible: 3;
       }
 
       .galeria-header {
-        padding: 0 var(--c-pad);
+        padding: 0 var(--px);
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -385,111 +388,143 @@ import Form from '../components/Form.jsx';
         flex-wrap: wrap;
       }
       .galeria-header .section-label { color: rgba(216,243,220,0.6); }
-      .galeria-header .section-title { color: var(--white); font-size: clamp(1.5rem, 3vw, 2.6rem); }
+      .galeria-header .section-title { color: #ffffff; font-size: clamp(1.5rem, 3vw, 2.6rem); }
       .galeria-header .section-title em { color: var(--green-light); }
 
-      .carousel-controls { display: flex; gap: 12px; flex-shrink: 0; align-items: center; }
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 80px;
+      }
+
+      .carousel-viewport {
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+      }
+      .carousel-slide img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .slide-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 60px 24px 24px;
+        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+        color: #ffffff;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        font-weight: 600;
+        text-align: center;
+        z-index: 5;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .carousel-slide.active .slide-label {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       .carousel-btn {
-        position: relative;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        border: 1.5px solid rgba(255,255,255,0.18);
-        background: rgba(255,255,255,0.04);
-        color: rgba(255,255,255,0.65);
+        border: 1.5px solid rgba(255,255,255,0.3);
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(8px);
+        color: white;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
-        overflow: hidden;
-        transition: border-color 0.3s, color 0.3s, transform 0.25s;
+        transition: all 0.3s;
+        z-index: 10;
       }
-      .carousel-btn::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        background: var(--green-light);
-        transform: scale(0);
-        transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      .carousel-btn:hover {
+        background: var(--green-mid);
+        border-color: var(--green-light);
+        transform: translateY(-50%) scale(1.1);
+      }
+      .carousel-btn:active {
+        transform: translateY(-50%) scale(0.95);
       }
       .carousel-btn svg {
-        position: relative;
-        z-index: 1;
         width: 20px;
         height: 20px;
-        transition: transform 0.25s;
-        stroke-width: 1.8;
+        stroke-width: 2;
       }
-      .carousel-btn:hover { border-color: var(--green-light); color: var(--green-deep); transform: scale(1.06); }
-      .carousel-btn:hover::before { transform: scale(1); }
-      .carousel-btn:hover svg { transform: scale(1.1); }
-      .carousel-btn:active { transform: scale(0.96); }
-      #prev-btn:hover svg { transform: translateX(-1px) scale(1.1); }
-      #next-btn:hover svg { transform: translateX(1px) scale(1.1); }
-
-      .carousel-viewport { overflow: hidden; width: 100%; cursor: grab; user-select: none; }
-      .carousel-viewport:active { cursor: grabbing; }
-
-      .carousel-track {
-        display: flex;
-        gap: var(--c-gap);
-        padding: 0 var(--c-pad);
-        transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
-        will-change: transform;
-      }
-
-      .carousel-slide {
-        flex: 0 0 calc((100% - var(--c-pad) * 2 - var(--c-gap) * (var(--c-visible) - 1)) / var(--c-visible));
-        min-width: 0;
-        position: relative;
-        border-radius: 4px;
-        overflow: hidden;
-        aspect-ratio: 4 / 3;
-      }
-      .carousel-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s, filter 0.5s;
-        filter: saturate(0.85) brightness(0.88);
-      }
-      .carousel-slide:hover img { transform: scale(1.04); filter: saturate(1) brightness(0.95); }
-
-      .slide-caption {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(26,58,42,0.85) 0%, transparent 55%);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 20px 18px;
-        opacity: 0;
-        transition: opacity 0.35s;
-      }
-      .carousel-slide:hover .slide-caption { opacity: 1; }
+      #prev-btn { left: 20px; }
+      #next-btn { right: 20px; }
 
       .carousel-dots {
         display: flex;
         justify-content: center;
-        gap: 8px;
-        margin-top: 32px;
-        padding: 0 var(--c-pad);
+        gap: 10px;
+        margin-top: 24px;
       }
       .carousel-dot {
-        width: 20px;
-        height: 3px;
-        border-radius: 2px;
-        background: rgba(255,255,255,0.2);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
         border: none;
         cursor: pointer;
-        transition: background 0.3s, width 0.3s;
+        transition: all 0.3s;
         padding: 0;
       }
-      .carousel-dot.active { background: var(--green-light); width: 36px; }
+      .carousel-dot:hover {
+        background: rgba(255,255,255,0.6);
+      }
+      .carousel-dot.active {
+        background: var(--green-light);
+        transform: scale(1.2);
+      }
+
+      /* ── TEMA OSCURO CAROUSEL ── */
+      .dark-theme #galeria {
+        background: #0a150b;
+      }
+      .dark-theme .galeria-header .section-label {
+        color: #74c69d;
+      }
+      .dark-theme .galeria-header .section-title {
+        color: #ffffff;
+      }
+      .dark-theme .carousel-dot {
+        background: rgba(255,255,255,0.25);
+      }
+      .dark-theme .carousel-dot:hover {
+        background: rgba(255,255,255,0.5);
+      }
+      .dark-theme .carousel-dot.active {
+        background: #52b788;
+      }
 
       /* ══════════════════════════════════════
          HERO — #inicio
@@ -724,7 +759,8 @@ import Form from '../components/Form.jsx';
 
         #contacto { grid-template-columns: 1fr; gap: 48px; }
 
-        #galeria { --c-visible: 2; --c-gap: 16px; }
+        .carousel-wrapper { padding: 0 70px; }
+        .carousel-btn { width: 44px; height: 44px; }
       }
 
       /* ══════════════════════════════════════
@@ -761,15 +797,19 @@ import Form from '../components/Form.jsx';
         .team-card { width: 100%; max-width: 340px; }
 
         /* Carousel: 1 slide */
-        #galeria { padding: 52px 0 48px; --c-visible: 1; --c-gap: 12px; --c-pad: 20px; }
+        #galeria { padding: 52px 0 48px; }
         .galeria-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-        .carousel-controls { align-self: flex-start; }
-        .carousel-dots { margin-top: 20px; }
-        .slide-caption { opacity: 1; }
-        .carousel-btn { width: 44px; height: 44px; }
-
         /* Contacto */
         #contacto { grid-template-columns: 1fr; gap: 40px; }
+
+        /* Carousel mobile */
+        .carousel-wrapper { padding: 0 60px; }
+        .carousel-slide { height: 300px; }
+        #prev-btn { left: 10px; }
+        #next-btn { right: 10px; }
+        .carousel-btn { width: 40px; height: 40px; }
+        .carousel-dots { margin-top: 20px; }
+        .slide-label { padding: 40px 20px 20px; font-size: 1rem; }
       }
 
       /* ══════════════════════════════════════
@@ -777,10 +817,14 @@ import Form from '../components/Form.jsx';
       ══════════════════════════════════════ */
       @media (max-width: 480px) {
         :root { --px: 16px; }
-        #galeria { --c-pad: 16px; }
         .hero-title { font-size: clamp(2rem, 8vw, 2.6rem); }
         .stat-item { padding: 24px 16px; }
         .team-card { width: 100%; max-width: 100%; }
+        .carousel-wrapper { padding: 0 50px; }
+        .carousel-slide { height: 250px; }
+        #prev-btn { left: 5px; }
+        #next-btn { right: 5px; }
+        .carousel-btn { width: 36px; height: 36px; }
       }
     </style>
   </head>
@@ -795,52 +839,64 @@ import Form from '../components/Form.jsx';
         <div class="galeria-header reveal">
           <div>
             <span class="section-label">Nuestro planeta</span>
-            <h2 class="section-title" style="color:var(--white)">Imágenes que nos<br/><em>inspiran a actuar</em></h2>
-          </div>
-          <div class="carousel-controls">
-            <button class="carousel-btn" id="prev-btn" aria-label="Anterior">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 18l-6-6 6-6"/>
-              </svg>
-            </button>
-            <button class="carousel-btn" id="next-btn" aria-label="Siguiente">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-            </button>
+            <h2 class="section-title">Imágenes que nos<br/><em>inspiran a actuar</em></h2>
           </div>
         </div>
-        <div class="carousel-viewport" id="carousel-viewport">
-          <div class="carousel-track" id="carousel-track">
-            <div class="carousel-slide">
-              <img src={Carousel1.src} alt="Imagen ambiental 1" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=800&q=80" alt="Energía solar" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=800&q=80" alt="Ríos y cuencas" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Montañas y ecosistemas" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" alt="Agroecología" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800&q=80" alt="Humedales" loading="lazy" />
-              <div class="slide-caption"></div>
-            </div>
-            <div class="carousel-slide">
-              <img src={Carousel2.src} alt="Imagen ambiental 2" loading="lazy" />
-              <div class="slide-caption"></div>
+        <div class="carousel-wrapper">
+          <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-track" id="carousel-track">
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Provincial Patagonia Azul</span>
+                <img src={Carousel1.src} alt="Parque Provincial Patagonia Azul" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Iguazú</span>
+                <img src={Carousel2.src} alt="Parque Nacional Iguazú" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Ciervo de los Pantanos</span>
+                <img src={Carousel3.src} alt="Parque Nacional Ciervo de los Pantanos" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Talampaya</span>
+                <img src={Carousel4.src} alt="Parque Nacional Talampaya" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Bañado La Estrella</span>
+                <img src={Carousel5.src} alt="Parque Nacional Bañado La Estrella" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Área Natural Protegida Península Valdés</span>
+                <img src={Carousel6.src} alt="Área Natural Protegida Península Valdés" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Calilegua</span>
+                <img src={Carousel7.src} alt="Parque Nacional Calilegua" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Provincial Ischigualasto</span>
+                <img src={Carousel8.src} alt="Parque Provincial Ischigualasto" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Perito Moreno</span>
+                <img src={Carousel9.src} alt="Parque Nacional Perito Moreno" loading="lazy" />
+              </div>
+              <div class="carousel-slide">
+                <span class="slide-label">Parque Nacional Lago Epuyen</span>
+                <img src={Carousel10.src} alt="Parque Nacional Lago Epuyen" loading="lazy" />
+              </div>
             </div>
           </div>
+          <button class="carousel-btn" id="prev-btn" aria-label="Anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="carousel-btn" id="next-btn" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
         </div>
         <div class="carousel-dots" id="carousel-dots"></div>
       </section>
@@ -856,7 +912,7 @@ import Form from '../components/Form.jsx';
             Expertos en<br/><em>ambiente</em><br/>y clima
           </h1>
           <p class="hero-sub reveal reveal-delay-2">
-            Somos un think tank especializados en asesoramiento, análisis y desarrollo de proyectos y políticas sostenibles basadas en evidencia científica.
+            Somos un think tank especializado en asesoramiento, análisis y desarrollo de proyectos y políticas sostenibles basadas en evidencia científica.
           </p>
           <div class="hero-actions reveal reveal-delay-3">
             <a href="#servicios" class="btn-primary">
@@ -1032,14 +1088,14 @@ import Form from '../components/Form.jsx';
               <img src={GiseMunno.src} alt="Giselle Munno" />
             </div>
             <div class="team-role">Derecho Ambiental</div>
-            <div class="team-name">Abogada — Giselle Munno</div>
+            <div class="team-name">Giselle Dithurbide. Abogada (UBA). Magister en Política, Derecho y Gestión Ambiental (U. AUSTRAL)</div>
           </div>
           <div class="team-card reveal reveal-delay-1">
             <div class="team-avatar">
               <img src={FranMagni.src} alt="Francisco Magni" />
             </div>
             <div class="team-role">Ciencias Ambientales</div>
-            <div class="team-name">Lic. en Cs. Ambientales — Francisco Magni</div>
+            <div class="team-name">Francisco Magni. Lic. Cs. Ambientales (UBA) . Magister en Política, Derecho y Gestión Ambiental (U. AUSTRAL)</div>
           </div>
           <div class="team-card reveal reveal-delay-2">
             <div class="team-avatar">🌾</div>
@@ -1110,7 +1166,6 @@ import Form from '../components/Form.jsx';
          CAROUSEL
       ══════════════════════════════════════ */
       (function initCarousel() {
-        const galeria  = document.getElementById('galeria') as HTMLElement;
         const track    = document.getElementById('carousel-track') as HTMLElement;
         const viewport = document.getElementById('carousel-viewport') as HTMLElement;
         const dotsWrap = document.getElementById('carousel-dots') as HTMLElement;
@@ -1123,95 +1178,55 @@ import Form from '../components/Form.jsx';
         const total  = slides.length;
         let current  = 0;
         let autoTimer: ReturnType<typeof setInterval> | null = null;
-        let isPaused = false;
-        let isDragging = false, dragStartX = 0, dragDelta = 0;
 
-        function cssVar(name: string) {
-          return parseFloat(getComputedStyle(galeria).getPropertyValue(name)) || 0;
-        }
-        function visibleCount() {
-          const v = cssVar('--c-visible');
-          return v > 0 ? Math.round(v) : 3;
-        }
-        function getOffset(index: number) {
-          const pad    = cssVar('--c-pad');
-          const gap    = cssVar('--c-gap');
-          const vis    = visibleCount();
-          const slideW = (viewport.offsetWidth - pad * 2 - gap * (vis - 1)) / vis;
-          return index * (slideW + gap);
-        }
         function goTo(index: number, instant = false) {
-          const max = Math.max(0, total - visibleCount());
-          if (index < 0) current = max;
-          else if (index > max) current = 0;
+          if (index < 0) current = total - 1;
+          else if (index >= total) current = 0;
           else current = index;
-          track.style.transition = instant ? 'none' : 'transform 0.55s cubic-bezier(0.4,0,0.2,1)';
-          track.style.transform  = `translateX(-${getOffset(current)}px)`;
+          
+          slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === current);
+          });
+          
+          track.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+          track.style.transform  = `translateX(-${current * 100}%)`;
           updateDots();
         }
+
         function buildDots() {
           dotsWrap.innerHTML = '';
-          const count = Math.max(1, total - visibleCount() + 1);
-          for (let i = 0; i < count; i++) {
+          for (let i = 0; i < total; i++) {
             const b = document.createElement('button');
             b.className = 'carousel-dot' + (i === 0 ? ' active' : '');
             b.addEventListener('click', () => { goTo(i); restartAuto(); });
             dotsWrap.appendChild(b);
           }
         }
+
         function updateDots() {
           dotsWrap.querySelectorAll('.carousel-dot')
             .forEach((d, i) => d.classList.toggle('active', i === current));
         }
+
         function startAuto() {
           if (autoTimer) return;
-          autoTimer = setInterval(() => { if (!isPaused) goTo(current + 1); }, 4000);
+          autoTimer = setInterval(() => { goTo(current + 1); }, 5000);
         }
-        function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+
+        function stopAuto() { 
+          if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } 
+        }
+
         function restartAuto() { stopAuto(); startAuto(); }
 
         prevBtn.addEventListener('click', () => { goTo(current - 1); restartAuto(); });
         nextBtn.addEventListener('click', () => { goTo(current + 1); restartAuto(); });
-        viewport.addEventListener('mouseenter', () => { isPaused = true; });
-        viewport.addEventListener('mouseleave', () => { isPaused = false; });
-
-        function onStart(x: number) { isDragging = true; isPaused = true; dragStartX = x; dragDelta = 0; track.style.transition = 'none'; }
-        function onMove(x: number) {
-          if (!isDragging) return;
-          dragDelta = x - dragStartX;
-          track.style.transform = `translateX(-${getOffset(current) - dragDelta}px)`;
-        }
-        function onEnd() {
-          if (!isDragging) return;
-          isDragging = false;
-          const threshold = viewport.offsetWidth * 0.12;
-          if (dragDelta < -threshold) goTo(current + 1);
-          else if (dragDelta > threshold) goTo(current - 1);
-          else goTo(current);
-          isPaused = false;
-          restartAuto();
-        }
-
-        viewport.addEventListener('mousedown',  e => onStart(e.clientX));
-        viewport.addEventListener('mousemove',  e => onMove(e.clientX));
-        viewport.addEventListener('mouseup',    onEnd);
-        viewport.addEventListener('mouseleave', () => { if (isDragging) onEnd(); });
-        viewport.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
-        viewport.addEventListener('touchmove',  e => onMove(e.touches[0].clientX),  { passive: true });
-        viewport.addEventListener('touchend',   onEnd);
 
         buildDots();
         goTo(0, true);
         startAuto();
 
-        let resizeTimer: ReturnType<typeof setTimeout>;
-        window.addEventListener('resize', () => {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(() => {
-            buildDots();
-            goTo(Math.min(current, Math.max(0, total - visibleCount())), true);
-          }, 120);
-        });
+        window.addEventListener('resize', () => { goTo(current, true); });
       })();
     </script>
   </body>
