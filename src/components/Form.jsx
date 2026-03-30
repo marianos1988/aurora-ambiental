@@ -14,15 +14,15 @@ export default function Form() {
     const [form, setForm] = useState(initialForm);
 
     const initialMessage = {
-        message: "Hola",
-        color: "reddd"
+        message: "",
+        color: ""
     }
     const [message, setMessage] = useState(initialMessage);
 
 
-    // const initialSpinner = false
+    const initialSpinner = false
 
-    // const [stateSpinner, setStateSpinner] = useState(initialSpinner);
+    const [stateSpinner, setStateSpinner] = useState(initialSpinner);
 
     const cleanFields = () => {
       setForm(initialForm)
@@ -37,54 +37,52 @@ export default function Form() {
             [name]: value,
         })
 
-        // setMessage(initialMessage)
+        setMessage(initialMessage)
     }
 
-    // const validateFields = () => {
+    const validateFields = () => {
 
-    //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    //     if (form.nombre.length < 4) {
-
-    //         setMessage({
-
-    //             message: "Ingrese un nombre mayor a 4 letras",
-    //             color: "red"
-    //         });
-
-    //         return false
-    //     }
-    //     else if(!(regex.test(form.email))) {
-    //         setMessage({
-
-    //             message: "Ingresa un correo electronico valido",
-    //             color: "red"
-    //         });
-    //         return false;
-    //     }
-    //     else if(!/^[0-9]+$/.test(form.telefono)) {
-
-    //         setMessage({
-
-    //             message: "Ingresa solo numeros en el telefono",
-    //             color: "red"
-    //         });
-
-    //         return false
-    //     }
-    //     else if(form.mensaje.length < 5) {
-            
-    //         setMessage({
-    //             message: "Ingrese un texto mayor a 5 digitos",
-    //             color: "red"
-    //         });
-
-    //     }
-    //     else {
-
-    //         return true
-    //     }
-    // }
+        if (form.nombre.length < 4) {
+            setMessage({
+                message: "Ingrese un nombre mayor a 4 letras",
+                color: "red"
+            });
+            return false;
+        }
+        else if (form.organizacion.length < 1) {
+            setMessage({
+                message: "Ingrese un nombre de la organizacion",
+                color: "red"
+            });
+            return false;
+        }
+        else if(!(regex.test(form.email))) {
+            setMessage({
+                message: "Ingrese un correo electronico valido",
+                color: "red"
+            });
+            return false;
+        }
+        else if(form.servicio === "") {
+            setMessage({
+                message: "Elija una opcion de servicio de interes",
+                color: "red"
+            });
+            return false;
+        }
+        else if(form.mensaje.length < 1) {
+            setMessage({
+                message: "Escriba un Mensaje de lo que necesite",
+                color: "red"
+            });
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 
 
@@ -93,9 +91,9 @@ export default function Form() {
             e.preventDefault();
             try {   
 
-                    // const isOk = validateFields(form)
+                    const isOk = validateFields(form)
 
-                    // if(isOk) {
+                    if(isOk) {
 
                         let objectSubmit = {
         
@@ -108,35 +106,35 @@ export default function Form() {
                         }
 
 
-                        // setStateSpinner(true)
+                        setStateSpinner(true)
 
-                        // const JSONSubmit = await fetch("https://formsubmit.co/ajax/essencecrew.bookings@gmail.com",objectSubmit);
-                        // const data = await JSONSubmit.json();
-                        // setStateSpinner(false)
+                        const JSONSubmit = await fetch("https://formsubmit.co/ajax/aurora.ambiente@gmail.com",objectSubmit);
+                        const data = await JSONSubmit.json();
+                        setStateSpinner(false)
 
-                        // if(data.success) {
-
-
-                        //     setMessage({
-                        //         message: "Mensaje Enviado",
-                        //         color: "green"
-                        //     })
-                        //     cleanFields();
+                        if(data.success) {
 
 
-                        // } else {
-                        //         setMessage({
-                        //         message: "Mensaje no enviado",
-                        //         color: "red"
-                        //     })
-                        // }
-                    // } 
+                            setMessage({
+                                message: "Mensaje Enviado",
+                                color: "green"
+                            })
+                            cleanFields();
+
+
+                        } else {
+                                setMessage({
+                                message: "Mensaje no enviado",
+                                color: "red"
+                            })
+                        }
+                    } 
 
             } catch {
-                        // setMessage({
-                        //     message: "Error de coenxion",
-                        //     color: "red"
-                        // })
+                        setMessage({
+                            message: "Error de conexion",
+                            color: "red"
+                        })
             }
     }
     return(
@@ -178,7 +176,7 @@ export default function Form() {
         <div className="box-btns-notifications">
           <button type="submit" className="btn-submit" onClick={ submit }>Enviar consulta</button>
           <Spinner 
-            state={true}
+            state={stateSpinner}
           />
           <div className="box-notifications">
             <h2 className={(message.color === "green" ? "text-green" : "text-red")}>{message.message}</h2>

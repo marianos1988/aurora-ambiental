@@ -35,6 +35,237 @@ import Form from '../components/Form.jsx';
         --px: clamp(16px, 5vw, 72px);
       }
 
+      /* ── TEMA OSCURO ── */
+      .dark-theme {
+        --ink:          #e8e8e6;
+        --muted:        #a8b8a8;
+        --border:       #3a4a3a;
+        --bg:           #0f1a12;
+        --white:        #1a2a1f;
+      }
+
+      .dark-theme body,
+      .dark-theme {
+        background: var(--bg);
+        color: var(--ink);
+      }
+
+      .dark-theme .header-main {
+        background: rgba(15, 26, 18, 0.97);
+        border-bottom-color: rgba(82, 183, 136, 0.2);
+      }
+
+      .dark-theme .logo-name,
+      .dark-theme .hero-title,
+      .dark-theme .section-title,
+      .dark-theme .about-quote,
+      .dark-theme .service-name,
+      .dark-theme .team-name,
+      .dark-theme .eje-content h3 {
+        color: var(--ink);
+      }
+
+      .dark-theme .hero-sub,
+      .dark-theme .about-text,
+      .dark-theme .service-desc,
+      .dark-theme .eje-content p,
+      .dark-theme .pillar p,
+      .dark-theme .tag,
+      .dark-theme .contact-intro > p,
+      .dark-theme .contact-detail {
+        color: var(--muted);
+      }
+
+      .dark-theme nav a {
+        color: #a0b0a0;
+      }
+      .dark-theme nav a:hover {
+        color: var(--ink);
+      }
+
+      .dark-theme .service-card {
+        background: var(--white);
+      }
+      .dark-theme .eje-card {
+        background: var(--white);
+      }
+      .dark-theme .eje-card:hover {
+        background: #152318;
+      }
+      .dark-theme .team-card {
+        background: var(--white);
+      }
+      .dark-theme .pillar {
+        border-color: var(--border);
+      }
+      .dark-theme .pillar:hover {
+        background: #152318;
+        border-color: var(--green-light);
+      }
+      .dark-theme .tag {
+        border-color: var(--border);
+      }
+      .dark-theme .tag:hover {
+        background: #152318;
+        border-color: var(--green-mid);
+      }
+      .dark-theme .team-card:hover {
+        border-color: var(--green-light);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+      .dark-theme .section-link {
+        color: var(--muted);
+        border-color: var(--border);
+      }
+      .dark-theme .section-link:hover {
+        color: var(--green-light);
+        border-color: var(--green-light);
+      }
+      .dark-theme .contact-detail strong {
+        color: var(--ink);
+      }
+      .dark-theme .contact-detail-icon {
+        background: #1a2a1f;
+      }
+      .dark-theme #servicios,
+      .dark-theme #contacto {
+        background: var(--bg);
+      }
+      .dark-theme .about-content {
+        background: #0a150b;
+      }
+      .dark-theme .about-image::after {
+        background: linear-gradient(to right, transparent 60%, rgba(15, 26, 18, 0.6) 100%);
+      }
+      .dark-theme .btn-ghost {
+        border-color: rgba(82, 183, 136, 0.35);
+        color: var(--green-light);
+      }
+      .dark-theme .btn-ghost:hover {
+        background: #1a2a1f;
+        border-color: var(--green-light);
+      }
+      .dark-theme #equipo {
+        background: #0a150b;
+      }
+      .dark-theme #ejes {
+        background: #0a150b;
+      }
+      .dark-theme .ejes-grid {
+        background: rgba(82, 183, 136, 0.1);
+      }
+      .dark-theme .nav-cta {
+        background: var(--green-mid);
+        border-color: var(--green-mid);
+      }
+      .dark-theme .nav-cta:hover {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+      }
+      .dark-theme .mobile-menu {
+        border-color: rgba(82, 183, 136, 0.3);
+      }
+      .dark-theme .mobile-menu span {
+        background: var(--ink);
+      }
+      .dark-theme .mobile-menu:hover {
+        background: #1a2a1f;
+      }
+      .dark-theme nav {
+        background: #0f1a12;
+        border-bottom-color: rgba(82, 183, 136, 0.2);
+      }
+      .dark-theme nav a {
+        border-bottom-color: rgba(82, 183, 136, 0.1);
+      }
+      .dark-theme nav a:hover {
+        background: #1a2a1f;
+        color: var(--green-light);
+      }
+      .dark-theme nav.is-open::after {
+        background: #1a2a1f;
+        color: var(--green-light);
+      }
+      .dark-theme .theme-toggle {
+        border-color: rgba(82, 183, 136, 0.3);
+      }
+      .dark-theme .theme-toggle:hover {
+        background: #1a2a1f;
+        border-color: var(--green-light);
+      }
+      .dark-theme .theme-toggle svg {
+        color: var(--ink);
+      }
+
+      /* ── SERVICIOS HOVER EN TEMA OSCURO ── */
+      .dark-theme #servicios {
+        background: #0a150b;
+      }
+      .dark-theme .service-card {
+        background: #0f1a12;
+      }
+      .dark-theme .service-name,
+      .dark-theme .service-desc {
+        color: #d8e0d8;
+      }
+      .dark-theme .service-number {
+        color: #74c69d;
+      }
+      .dark-theme .service-divider {
+        background: rgba(82, 183, 136, 0.2);
+      }
+      .dark-theme .service-card:hover {
+        background: #1a3a2a;
+      }
+      .dark-theme .service-card:hover .service-number,
+      .dark-theme .service-card:hover .service-name,
+      .dark-theme .service-card:hover .service-desc {
+        color: #ffffff;
+      }
+      .dark-theme .service-card:hover .service-divider {
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .dark-theme .services-grid {
+        background: rgba(82, 183, 136, 0.1);
+      }
+
+      /* ── EJES HOVER EN TEMA OSCURO ── */
+      .dark-theme #ejes {
+        background: #0a150b;
+      }
+      .dark-theme .eje-card {
+        background: #0f1a12;
+      }
+      .dark-theme .eje-content h3,
+      .dark-theme .eje-content p {
+        color: #d8e0d8;
+      }
+      .dark-theme .eje-card:hover {
+        background: #152318;
+      }
+      .dark-theme .eje-card:hover .eje-content h3,
+      .dark-theme .eje-card:hover .eje-content p {
+        color: #ffffff;
+      }
+      .dark-theme .ejes-grid {
+        background: rgba(82, 183, 136, 0.1);
+      }
+
+      /* ── TEXTOS MAS CLAROS EN TEMA OSCURO ── */
+      .dark-theme .hero-sub,
+      .dark-theme .about-text,
+      .dark-theme .service-desc,
+      .dark-theme .eje-content p,
+      .dark-theme .pillar p,
+      .dark-theme .tag,
+      .dark-theme .contact-intro > p,
+      .dark-theme .contact-detail {
+        color: #c8d4c8;
+      }
+      .dark-theme .section-label {
+        color: #74c69d;
+      }
+
       /* ══════════════════════════════════════
          RESET ANTI–SCROLL-HORIZONTAL
       ══════════════════════════════════════ */
