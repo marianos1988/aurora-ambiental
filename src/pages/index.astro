@@ -15,6 +15,7 @@ import Carousel10 from "../assets/carousel/10.jpg";
 import FranMagni from "../assets/profesionals/franmagni.jpg";
 import GiseMunno from "../assets/profesionals/gisemunno.jpg";
 import Form from '../components/Form.jsx';
+import AlphazetLight from "../fonts/Alphazet-Light.ttf";
 ---
 
 <html lang="es">
@@ -25,8 +26,16 @@ import Form from '../components/Form.jsx';
     <meta name="description" content="Consultora especializada en ambiente y cambio climático. Asesoramiento técnico-ambiental para organizaciones." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
+      @font-face {
+        font-family: 'Alphazet';
+        src: url('../fonts/Alphazet-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
       /* ── VARIABLES GLOBALES ── */
       :root {
         --green-deep:   #1a3a2a;
@@ -327,7 +336,7 @@ import Form from '../components/Form.jsx';
         display: block;
       }
       .section-title {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Alphazet', serif;
         font-size: clamp(1.75rem, 3.5vw, 3rem);
         font-weight: 300;
         line-height: 1.12;
@@ -447,7 +456,7 @@ import Form from '../components/Form.jsx';
         padding: 60px 24px 24px;
         background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         color: #ffffff;
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Alphazet', serif;
         font-size: clamp(1.2rem, 2.5vw, 1.8rem);
         font-weight: 600;
         text-align: center;
@@ -571,7 +580,7 @@ import Form from '../components/Form.jsx';
       .hero-eyebrow span { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-light); }
 
       .hero-title {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Alphazet', serif;
         font-size: clamp(2.2rem, 4vw, 5rem);
         font-weight: 300;
         line-height: 1.08;
@@ -614,7 +623,7 @@ import Form from '../components/Form.jsx';
       .stat-item { padding: 36px 20px; border-right: 1px solid rgba(255,255,255,0.08); text-align: center; }
       .stat-item:last-child { border-right: none; }
       .stat-number {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Alphazet', serif;
         font-size: clamp(2rem, 3.5vw, 3rem);
         font-weight: 300;
         color: var(--white);
@@ -660,8 +669,8 @@ import Form from '../components/Form.jsx';
       .service-card:hover .service-desc { color: var(--white); }
       .service-card:hover .service-divider { background: rgba(255,255,255,0.18); }
 
-      .service-number { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; color: var(--green-light); margin-bottom: 20px; transition: color 0.32s; }
-      .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--green-deep); margin-bottom: 12px; transition: color 0.32s; line-height: 1.25; }
+      .service-number { font-family: 'Alphazet', serif; font-size: 0.82rem; color: var(--green-light); margin-bottom: 20px; transition: color 0.32s; }
+      .service-name { font-family: 'Alphazet', serif; font-size: 1.35rem; font-weight: 400; color: var(--green-deep); margin-bottom: 12px; transition: color 0.32s; line-height: 1.25; }
       .service-divider { width: 28px; height: 1px; background: var(--border); margin-bottom: 14px; transition: background 0.32s; }
       .service-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; transition: color 0.32s; }
 
@@ -671,7 +680,7 @@ import Form from '../components/Form.jsx';
       .eje-card { background: var(--white); padding: 36px 28px; display: flex; align-items: flex-start; gap: 18px; transition: background 0.3s; min-width: 0; }
       .eje-card:hover { background: var(--green-pale); }
       .eje-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
-      .eje-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--green-deep); margin-bottom: 10px; }
+      .eje-content h3 { font-family: 'Alphazet', serif; font-size: 1.25rem; font-weight: 400; color: var(--green-deep); margin-bottom: 10px; }
       .eje-content p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
 
       /* ══════════════════════════════════════
@@ -693,7 +702,7 @@ import Form from '../components/Form.jsx';
       .about-content { padding: 72px var(--px); display: flex; flex-direction: column; justify-content: center; background: var(--white); min-width: 0; }
 
       .about-quote {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Alphazet', serif;
         font-size: clamp(1.1rem, 1.8vw, 1.75rem);
         font-weight: 300;
         font-style: italic;
@@ -750,7 +759,7 @@ import Form from '../components/Form.jsx';
       }
       .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
       .team-role { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-light); margin-bottom: 8px; }
-      .team-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--green-deep); line-height: 1.3; }
+      .team-name { font-family: 'Alphazet', serif; font-size: 1.05rem; font-weight: 600; color: var(--green-deep); line-height: 1.3; }
 
       /* ── TEAM EXPANDABLE ── */
       .team-card.expandable {
